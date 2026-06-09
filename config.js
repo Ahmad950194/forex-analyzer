@@ -6,7 +6,7 @@ const CONFIG = {
     TWELVEDATA_KEY: localStorage.getItem('TWELVEDATA_KEY') || '46b2db6d12b945a1b8d9dd2e763eff10',
     
     // Grok AI API - Get key from https://x.ai/
-    GROK_KEY: localStorage.getItem('GROK_KEY') || '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',
+    GROK_KEY: localStorage.getItem('GROK_KEY') || 'https://github.com/Ahmad950194/forex-analyzer/blob/main/config.js',
     
     // API Endpoints
     API_ENDPOINTS: {
