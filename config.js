@@ -3,10 +3,10 @@
 
 const CONFIG = {
     // TwelveData API - Get key from https://twelvedata.com/
-    TWELVEDATA_KEY: localStorage.getItem('TWELVEDATA_KEY') || 'demo',
+    TWELVEDATA_KEY: localStorage.getItem('TWELVEDATA_KEY') || 'c98ed79e07594a5b9386eab50e857d2b',
     
     // Grok AI API - Get key from https://x.ai/
-    GROK_KEY: localStorage.getItem('GROK_KEY') || null,
+    GROK_KEY: localStorage.getItem('GROK_KEY') || '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',
     
     // API Endpoints
     API_ENDPOINTS: {
