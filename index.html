@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Analyzer Pro</title>
+    <style>
+        *{margin:0;padding:0}
+        body{font-family:system-ui,sans-serif;background:#0f0f23;color:#fff;padding:20px}
+        .logo{color:#0D8ABC;font-size:24px;font-weight:bold;margin-bottom:20px}
+        .nav{background:#16213e;padding:15px;border-radius:10px;margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap}
+        .nav button{background:none;border:1px solid #374151;color:#a0aec0;padding:10px 20px;border-radius:8px;cursor:pointer;transition:all 0.3s}
+        .nav button:hover{border-color:#0D8ABC}
+        .nav button.active{background:#0D8ABC;color:#fff;border-color:#0D8ABC}
+        .page{display:none}
+        .page.active{display:block}
+        h1{margin-bottom:20px}
+        .header{background:#16213e;padding:15px;border-radius:10px;margin-bottom:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;align-items:center}
+        select{background:#0f0f23;color:#fff;border:1px solid #374151;padding:10px;border-radius:6px;cursor:pointer}
+        .btn{background:#0D8ABC;border:none;color:#fff;padding:10px 20px;border-radius:6px;cursor:pointer;transition:background 0.3s}
+        .btn:hover{background:#096a8a}
+        .price{display:flex;gap:30px}
+        .price b{color:#a0aec0;font-size:12px;display:block}
+        .price span{font-size:22px;font-weight:bold}
+        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:15px;margin-bottom:20px}
+        .stat{background:#16213e;padding:20px;border-radius:10px}
+        .stat-val{font-size:24px;font-weight:bold;color:#26a69a}
+        .panel{background:#16213e;border-radius:10px;margin-bottom:20px}
+        .panel h3{padding:15px;border-bottom:1px solid #374151}
+        .panel-content{padding:15px}
+        .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #374151}
+        .ai-box{background:#16213e;padding:20px;border-radius:10px}
+        .ai-result{background:#0f0f23;padding:20px;border-radius:10px;margin-top:15px;white-space:pre-wrap;line-height:1.6}
+        .calc{background:#16213e;padding:20px;border-radius:10px}
+        input{background:#0f0f23;color:#fff;border:1px solid #374151;padding:12px;border-radius:6px;margin-bottom:10px;width:100%;max-width:250px}
+        .result{background:#0f0f23;padding:15px;border-radius:8px;margin-top:15px}
+        .error{color:#ef5350}
+        .success{color:#26a69a}
+        .loading{color:#a0aec0;font-style:italic}
+    </style>
+</head>
+<body>
+    <div class="logo">📈 Forex Analyzer Pro</div>
+    
+    <div class="nav">
+        <button class="active" onclick="show('dashboard')">Dashboard</button>
+        <button onclick="show('ai')">🤖 AI</button>
+        <button onclick="show('calc')">🧮 Calculator</button>
+    </div>
+    
+    <div class="header">
+        <div>
+            <select id="pair" onchange="load()">
+                <option value="EUR/USD">EUR/USD</option>
+                <option value="GBP/USD">GBP/USD</option>
+                <option value="USD/JPY">USD/JPY</option>
+                <option value="AUD/USD">AUD/USD</option>
+            </select>
+            <button class="btn" onclick="load()">🔄 Refresh</button>
+        </div>
+        <div class="price">
+            <div>
+                <b>BID</b>
+                <span id="bid">-</span>
+            </div>
+            <div>
+                <b>ASK</b>
+                <span id="ask" style="color:#ef5350">-</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dashboard" class="page active">
+        <h1>Dashboard</h1>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-val">24</div>
+                <div>Buy Signals</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val" style="color:#ef5350">18</div>
+                <div>Sell Signals</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val">78.5%</div>
+                <div>Accuracy</div>
+            </div>
+        </div>
+        <div class="panel">
+            <h3>📊 Technical Indicators</h3>
+            <div class="panel-content" id="ind">
+                <div class="row"><span>RSI (14)</span><span class="loading">Loading...</span></div>
+                <div class="row"><span>MACD</span><span class="loading">Loading...</span></div>
+                <div class="row"><span>Trend</span><span class="loading">Loading...</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="ai" class="page">
+        <h1>🤖 AI Analysis</h1>
+        <button class="btn" style="background:linear-gradient(135deg,#667eea,#764ba2);margin-bottom:15px" onclick="generateAI()">⚡ Generate Signal</button>
+        <div class="ai-result" id="aiR">Click button to generate AI analysis...</div>
+    </div>
+    
+    <div id="calc" class="page">
+        <h1>📊 Position Size Calculator</h1>
+        <div class="calc">
+            <input id="bal" value="10000" placeholder="Account Balance ($)" type="number">
+            <input id="risk" value="2" placeholder="Risk Percentage (%)" type="number">
+            <input id="sl" value="20" placeholder="Stop Loss (Pips)" type="number">
+            <button class="btn" onclick="calc()">Calculate Position Size</button>
+            <div class="result" id="res">Enter values and click Calculate</div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
